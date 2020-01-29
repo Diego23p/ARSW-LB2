@@ -33,6 +33,7 @@ public class Consumer extends Thread{
             else {
             	synchronized(queue) {
             		try {
+            			Thread.sleep(3000);
                     	queue.wait();
                     } catch(InterruptedException e) {
                     	e.printStackTrace();
