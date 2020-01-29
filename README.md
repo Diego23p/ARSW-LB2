@@ -8,5 +8,17 @@
     ![](/image/1.jpg)
 
 2. Make the necessary adjustments so that the solution uses the CPU more efficiently, taking into account that - for now - production is slow and consumption is fast. Verify with JVisualVM that the CPU consumption is reduced. 
+
+    Código modificado Producer:
+    
+    ![](/image/pro1.jpg)
+    
+    Código modificado Consumer:
+    
+    ![](/image/con1.jpg)
+    
+    Consumo reducido:
+    
+    ![](/image/2.jpg)
  
 3. Make the producer now produce very fast, and the consumer consumes slow. Taking into account that the producer knows a Stock limit (how many elements he should have, at most in the queue), make that limit be respected. Review the API of the collection used as a queue to see how to ensure that this limit is not exceeded. Verify that, by setting a small limit for the 'stock', there is no high CPU consumption or errors.
