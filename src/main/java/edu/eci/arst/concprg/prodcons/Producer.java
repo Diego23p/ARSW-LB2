@@ -30,11 +30,17 @@ public class Producer extends Thread {
 
     @Override
     public void run() {
+    	
+    	
         while (true) {
-        	
-            dataSeed = dataSeed + rand.nextInt(100);
-            
-            synchronized(queue) {
+        	/*try {
+    			Thread.sleep(1000);
+    		} catch (InterruptedException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}*/
+        	synchronized(queue) {
+        		dataSeed = dataSeed + rand.nextInt(100);
             	System.out.println("Producer added " + dataSeed);
 	            queue.add(dataSeed);
 	            queue.notifyAll();
