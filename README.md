@@ -40,3 +40,54 @@
     ![](/image/limite5.jpg)
     
 #### **PART II**
+
+2. Review the code and identify how the functionality indicated above was implemented. Given the intention of the game, an invariant should be that the sum of the life points of all players is always the same (of course, in an instant of time in which a time increase / reduction operation is not in process ). For this case, for N players, what should this value be?
+    
+    esta variable debería ser la multiplicación de la cantidad de N jugadores (3) por el valor M de sus vidas (100)
+    
+3. Run the application and verify how the ‘pause and check’ option works. Is the invariant fulfilled?
+
+    Se observa cómo cambia la sumatoria de las vidas, el "invariante", varía:
+
+    ![](/image/cambia.jpg)
+    
+4. A first hypothesis that the race condition for this function (pause and check) is presented is that the program consults the list whose values ​​it will print, while other threads modify their values. To correct this, do whatever is necessary so that, before printing the current results, all other threads are paused. Additionally, implement the ‘resume’ option.
+
+    Corrección de la función del botón "pause and check":
+
+    ![](/image/pauseAndCheck.jpg)
+    
+    Corrección de la función del botón "resume":
+    
+    ![](/image/resume.jpg)
+    
+5. Check the operation again (click the button many times). Is the invariant fulfilled or not ?.
+
+    Se cumple el inavariante:
+
+    ![](/image/Invariante3.jpg)
+    
+6. Identify possible critical regions in regards to the fight of the immortals. Implement a blocking strategy that avoids race conditions. Remember that if you need to use two or more ‘locks’ simultaneously, you can use nested synchronized blocks:
+
+    Implemantación correcta de región crítica:
+    
+    ![](/image/regionCritica.jpg)
+    
+    
+9. Once the problem is corrected, rectify that the program continues to function consistently when 100, 1000 or 10000 immortals are executed. If in these large cases the invariant begins to be breached again, you must analyze what was done in step 4.
+
+    Cuatro "Pause and check" usando 100 inmortales:
+    
+    ![](/image/100.jpg)
+    
+    Cuatro "Pause and check" usando 1000 inmortales:
+    
+    ![](/image/1000.jpg)
+    
+    Cuatro "Pause and check" usando 10000 inmortales:
+    
+    ![](/image/10000.jpg)
+
+11. To finish, implement the STOP option.
+
+    ![](/image/stop.jpg)
