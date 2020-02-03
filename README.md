@@ -100,7 +100,12 @@
 10. An annoying element for the simulation is that at a certain point in it there are few living 'immortals' making failed fights with 'immortals' already dead. It is necessary to suppress the immortal dead of the simulation as they die. 
     1. Analyzing the simulation operation scheme, could this create a race condition? Implement the functionality, run the simulation and see what problem arises when there are many 'immortals' in it. Write your conclusions about it in the file ANSWERS.txt. 
     
-        Sí, se podría crear una condición de carrera al intentar modificar el valor de un Inmortal mientras este está siendo eliminado de la lista
+        Sí, se podría crear una condición de carrera al intentar modificar el valor de un Inmortal mientras este está siendo eliminado de la lista.
+
+	El programa entra en un ciclo infinito ya que solo quedan dos o en otros casos mas inmoratles con un puntaje de vida muy elevado y como dentro de 
+	la ejecucion del programa se usa un Random la probabilidad de que el puntaje de alguno de ellos llegue a 0 es demasiado baja o se podria decir que
+	es nula, entonces va a ser normal que el programa entre en un punto que ya no se pueden eliminar ciertos inmortales pero como ya se menciono anteriormente
+	es un tema netamente estadistico.
 
     2. Correct the previous problem WITHOUT using synchronization, since making access to the shared list of immortals sequential would make simulation extremely slow. 
     
