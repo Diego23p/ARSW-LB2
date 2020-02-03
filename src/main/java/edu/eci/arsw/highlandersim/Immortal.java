@@ -73,7 +73,8 @@ public class Immortal extends Thread {
 	            this.health += defaultDamageValue;
 	            updateCallback.processReport("Fight: " + this + " vs " + i2+"\n");
 	            if (i2.getHealth() == 0) {
-	            	//quitelo
+	            	immortalsPopulation.remove(i2);
+	            	i2.suspend();
 	            }
 	        } else {
 	            updateCallback.processReport(this + " says:" + i2 + " is already dead!\n");

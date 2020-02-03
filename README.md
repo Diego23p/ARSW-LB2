@@ -71,9 +71,18 @@
 
     Implemantación correcta de región crítica:
     
+    ![](/image/bloqueo.jpg)
+    
+7. After implementing your strategy, start running your program, and pay attention to whether it comes to a halt. If so, use the jps and jstack programs to identify why the program stopped.
+
+    El programa entra en deadLock:
+    
+    [imagen analizadores]
+    
+8. Consider a strategy to correct the problem identified above (you can review Chapter 15 of Java Concurrency in Practice again).
+
     ![](/image/regionCritica.jpg)
-    
-    
+
 9. Once the problem is corrected, rectify that the program continues to function consistently when 100, 1000 or 10000 immortals are executed. If in these large cases the invariant begins to be breached again, you must analyze what was done in step 4.
 
     Cuatro "Pause and check" usando 100 inmortales:
@@ -87,6 +96,15 @@
     Cuatro "Pause and check" usando 10000 inmortales:
     
     ![](/image/10000.jpg)
+
+10. An annoying element for the simulation is that at a certain point in it there are few living 'immortals' making failed fights with 'immortals' already dead. It is necessary to suppress the immortal dead of the simulation as they die. 
+    1. Analyzing the simulation operation scheme, could this create a race condition? Implement the functionality, run the simulation and see what problem arises when there are many 'immortals' in it. Write your conclusions about it in the file ANSWERS.txt. 
+    
+        Sí, se podría crear una condición de carrera al intentar modificar el valor de un Inmortal mientras este está siendo eliminado de la lista
+
+    2. Correct the previous problem WITHOUT using synchronization, since making access to the shared list of immortals sequential would make simulation extremely slow. 
+    
+        g
 
 11. To finish, implement the STOP option.
 

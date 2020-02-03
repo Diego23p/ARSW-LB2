@@ -73,9 +73,10 @@ public class ControlFrame extends JFrame {
                 immortals = setupInmortals();
 
                 if (immortals != null) {
+                	synchronized(immortals) {
                     for (Immortal im : immortals) {
                         im.start();
-                    }
+                    }}
                 }
 
                 btnStart.setEnabled(false);
