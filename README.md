@@ -110,7 +110,25 @@
 
     2. Correct the previous problem WITHOUT using synchronization, since making access to the shared list of immortals sequential would make simulation extremely slow. 
     
-        g
+        Se hicieron 3 cosas, la primera se hizo una verificacion para que no se empiece la pelea si el atacante o el atacado estan muertos, esto no se tenia en cuenta en
+	ninguno momento.
+
+	![](/image/remover.jpg)
+
+	La segunda fue la implementacion de la lista concurrente por medio de la clase CopyAndWriteList, se realizaron los cambios correspondientes en la clase Inmortal y 
+	en la clase ControlFrame.
+
+	![](/image/listaConcurrente.jpg)
+
+	La tercera y ultima es la verificacion de las operaciones sobre la lista de inmortales siempre y cuando exista mas de un elemento, si no se dabe que ya hay un ganador
+	y se procede a detener todos los hilos.
+
+	
+	![](/image/verificacion.jpg)
+
+	![](/image/detener.jpg)
+
+
 
 11. To finish, implement the STOP option.
 
