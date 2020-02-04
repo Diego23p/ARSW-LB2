@@ -73,10 +73,9 @@ public class ControlFrame extends JFrame {
                 immortals = setupInmortals();
 
                 if (immortals != null) {
-                	synchronized(immortals) {
                     for (Immortal im : immortals) {
                         im.start();
-                    }}
+                    }
                 }
 
                 btnStart.setEnabled(false);
@@ -88,17 +87,22 @@ public class ControlFrame extends JFrame {
         JButton btnPauseAndCheck = new JButton("Pause and check");
         btnPauseAndCheck.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+            	for (Immortal im : immortals) {
+            		try {
+						im.detener();
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+            	}
 
                 int sum = 0;
-                synchronized(immortals) {
-	                for (Immortal im : immortals) {
-	                		sum += im.getHealth();
+	            for (Immortal im : immortals) {
+	            	sum += im.getHealth();
 	                }
-                }
 
                 statisticsLabel.setText("<html>"+immortals.toString()+"<br>Health sum:"+ sum);
-
             }
+
         });
         
         toolBar.add(btnPauseAndCheck);
@@ -108,9 +112,7 @@ public class ControlFrame extends JFrame {
         btnResume.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	for (Immortal im : immortals) {
-                	synchronized(im) {
-                		im.continuar();
-                	} 
+            		im.continuar();
                 }
             }
         });
@@ -131,15 +133,11 @@ public class ControlFrame extends JFrame {
         btnStop.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	for (Immortal im : immortals) {
-                	synchronized(im) {
                 		try {
 							im.detener();
 						} catch (InterruptedException e1) {
-							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-                	}
-        
                 }
             }
         });

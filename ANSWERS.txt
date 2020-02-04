@@ -1,0 +1,9 @@
+Desde una cantidad de hilos baja (2) hasta una media(20 aprox.), el programa queda ejecutando un hilo y no responde, o en otros casos, 
+como dentro de la ejecucion del programa se usa un Random la probabilidad de que el puntaje de alguno de ellos llegue a 0 es 
+demasiado baja o se podria decir que	es nula, entonces va a ser normal que el programa entre en un punto que ya no se pueden 
+eliminar ciertos inmortales pero como ya se menciono anteriormente, es un tema netamente estadistico.
+
+Con una cantidad alta de hilos(>40) se genera un error debido a una condición de carrera que corresponde a ConcurrentModificationException,
+ya que se insertan datos de la lista mientras que se está iterando en ella, la excepción avisa que no se puede asegurar la integridad de los datos
+
+Esto se puede solucionar en primera instancia syncronizando la lista, pero se perderán todos los beneficios del multiprocesamiento

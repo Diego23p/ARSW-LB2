@@ -69,7 +69,7 @@
     
 6. Identify possible critical regions in regards to the fight of the immortals. Implement a blocking strategy that avoids race conditions. Remember that if you need to use two or more ‘locks’ simultaneously, you can use nested synchronized blocks:
 
-    Implemantación correcta de región crítica:
+    Implemantación incorrecta de región crítica:
     
     ![](/image/bloqueo.jpg)
     
@@ -77,9 +77,11 @@
 
     El programa entra en deadLock:
     
-    [imagen analizadores]
+    ![](/image/deadLock.jpg)
     
 8. Consider a strategy to correct the problem identified above (you can review Chapter 15 of Java Concurrency in Practice again).
+
+    Se asegura que los bloqueos siempre se realicen en el mismo orden de acuerdo con los indices de los objetos, el código se corrigió de la siguiente forma:
 
     ![](/image/regionCritica.jpg)
 
@@ -100,12 +102,11 @@
 10. An annoying element for the simulation is that at a certain point in it there are few living 'immortals' making failed fights with 'immortals' already dead. It is necessary to suppress the immortal dead of the simulation as they die. 
     1. Analyzing the simulation operation scheme, could this create a race condition? Implement the functionality, run the simulation and see what problem arises when there are many 'immortals' in it. Write your conclusions about it in the file ANSWERS.txt. 
     
-        Sí, se podría crear una condición de carrera al intentar modificar el valor de un Inmortal mientras este está siendo eliminado de la lista.
+        análisis en ANSWERS.txt
 
-	El programa entra en un ciclo infinito ya que solo quedan dos o en otros casos mas inmoratles con un puntaje de vida muy elevado y como dentro de 
-	la ejecucion del programa se usa un Random la probabilidad de que el puntaje de alguno de ellos llegue a 0 es demasiado baja o se podria decir que
-	es nula, entonces va a ser normal que el programa entre en un punto que ya no se pueden eliminar ciertos inmortales pero como ya se menciono anteriormente
-	es un tema netamente estadistico.
+        Esto se puede solucionar en primera instancia syncronizando la lista, pero se perderán todos los beneficios del multiprocesamiento, así:
+        
+        ![](/image/10_1.jpg)
 
     2. Correct the previous problem WITHOUT using synchronization, since making access to the shared list of immortals sequential would make simulation extremely slow. 
     
@@ -114,3 +115,8 @@
 11. To finish, implement the STOP option.
 
     ![](/image/stop.jpg)
+
+### Comandos para ejecutar el main de ControlFrame:
+
+- mvn package
+- mvn exec:java -Dexcec.mainClass="edu.eci.arsw.highlandersim.ControlFrame"
