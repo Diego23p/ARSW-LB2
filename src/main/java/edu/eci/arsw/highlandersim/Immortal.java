@@ -34,8 +34,6 @@ public class Immortal extends Thread {
 
         while (true) {
             Immortal im;
-
-
             if (immortalsPopulation.size() > 1) {
                 int myIndex = immortalsPopulation.indexOf(this);
 
@@ -65,24 +63,12 @@ public class Immortal extends Thread {
                         }
                     }
                 }
-
-            } else {
-                for (Immortal ime : immortalsPopulation) {
-                    try {
-                        ime.detener();
-                    } catch (InterruptedException e1) {
-                        e1.printStackTrace();
-                    }
-                }
             }
-
         }
     }
 
     public void fight(Immortal i2) {
-        if (this.getHealth() == 0) {
-            immortalsPopulation.remove(this);
-        } else {
+        if(this.getHealth()>0) {
             Immortal primero;
             Immortal segundo;
             if (this.getId() < i2.getId()) {
@@ -100,16 +86,18 @@ public class Immortal extends Thread {
                         i2.changeHealth(i2.getHealth() - defaultDamageValue);
                         this.health += defaultDamageValue;
                         updateCallback.processReport("Fight: " + this + " vs " + i2 + "\n");
-                        if (i2.getHealth() == 0) {
-                            immortalsPopulation.remove(i2);
-                        }
+
                     } else {
                         updateCallback.processReport(this + " says:" + i2 + " is already dead!\n");
                     }
                 }
             }
         }
+        else{
+            immortalsPopulation.remove(this);
+        }
     }
+
 
     public void changeHealth(int v) {
         health = v;
